@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "algoritmo.h": "c",
+        "hipercampo.h": "c",
+        "stdio.h": "c",
+        "file.h": "c",
+        "stdlib.h": "c",
+        "matriz.h": "c"
+    }
+}
