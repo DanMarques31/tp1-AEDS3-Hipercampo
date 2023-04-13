@@ -4,24 +4,25 @@
 #include "hipercampo.h"
 
 int main(int argc, char *argv[]) {
-
-    abre_arquivo();
+    
+    abre_arquivo(argv[2]);
 
     int qtdpontos = 0, anchorA = 0, anchorB = 0;
+    get_dados(&qtdpontos, &anchorA, &anchorB);
+
     Pontos *pontos;
-    Pontos *aux;
-
-    aux = malloc(qtdpontos * sizeof(Pontos));
-    monta_hipercampo(aux, &qtdpontos, &anchorA, &anchorB);
     pontos = malloc(qtdpontos * sizeof(Pontos));
-    monta_hipercampo(pontos, &qtdpontos, &anchorA, &anchorB);
-
+    
+    for (int i = 0; i < qtdpontos; i++) {
+        pontos[i].x = scan_arquivo();
+        pontos[i].y = scan_arquivo();
+    }
+    
     int answer = math_func(pontos, qtdpontos, anchorA, anchorB);
 
     printf("\n A quantidade maxima de pontos eh: %d\n", answer);
-   
+    
     free(pontos);
-    free(aux);
     
     fecha_arquivo();
 }

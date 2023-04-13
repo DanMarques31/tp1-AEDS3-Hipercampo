@@ -9,9 +9,7 @@ struct pontos {
 
 typedef struct pontos Pontos;
 
-void free_points(Pontos [], int );
-void monta_hipercampo(Pontos [], int *, int *, int *);
-int get_maxY(Pontos [], int);
+void get_dados(int *, int *, int *);
 int math_func(Pontos [], int , int, int);
 
 #endif

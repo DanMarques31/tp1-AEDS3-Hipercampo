@@ -3,36 +3,16 @@
 #include "file.h"
 #include "hipercampo.h"
 
-void monta_hipercampo(Pontos pontos[], int *qtdpontos, int *anchorA, int *anchorB) {
+void get_dados(int *qtdpontos, int *anchorA, int *anchorB) {
     
     *qtdpontos = scan_arquivo();
     *anchorA = scan_arquivo();
     *anchorB = scan_arquivo();
-    
-    for (int i = 0; i < *qtdpontos; i++) {
-        pontos[i].x = scan_arquivo();
-        pontos[i].y = scan_arquivo();
-    }
-    
 }
 
-int get_maxY (Pontos pontos[], int qtdpontos) {
-
-    int max = pontos[0].y;
-    for (int i = 1; i < qtdpontos; i++) {
-
-        if (pontos[i].y > max) {
-            
-            max = pontos[i].y;
-        }
-    }
-
-    return max;
-}
-
-int math_func(Pontos pontos[], int qtdpontos, int anchorA, int anchorB) {
+int math_func(Pontos *pontos, int qtdpontos, int anchorA, int anchorB) {
     int pconect = 0;
-
+    
     for (int i = 0; i < qtdpontos; i++) {
         int cont = 0;
         for (int j = 0; j < qtdpontos; j++) {
@@ -68,7 +48,7 @@ int math_func(Pontos pontos[], int qtdpontos, int anchorA, int anchorB) {
                 for (int k = 0; k < qtdpontos; k++) {
                     if (k != i && k != j) {
                         int xk = pontos[k].x, yk = pontos[k].y;
-                        if ((yk > yn && yk > ysimetrico) || (yk < yn && yk < ysimetrico)) {
+                        if ((yk > yn && yk > ysimetrico) || (yk < yn && yk < ysimetrico)) {                            
                             if ((xk < xn && xk < xsimetrico) || (xk > xn && xk > xsimetrico)) {
                                 intersecta_apenas_ancoras = 0;
                                 break;
@@ -76,11 +56,13 @@ int math_func(Pontos pontos[], int qtdpontos, int anchorA, int anchorB) {
                         }
                     }
                 }
+
                 if (intersecta_apenas_ancoras) {
                     cont++;
                 }
             }
         }
+
         if (cont > pconect) {
             pconect = cont;
         }
